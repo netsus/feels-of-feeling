@@ -511,6 +511,56 @@
       font-size: 13px;
     }
 
+    .map-action,
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid oklch(71% 0.18 150 / 0.34);
+      color: var(--night-fg);
+      background:
+        linear-gradient(135deg, oklch(71% 0.18 150 / 0.24), oklch(100% 0 0 / 0.08));
+      box-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.12);
+      font-size: 13px;
+      font-weight: 850;
+      transition:
+        border-color var(--motion-base) var(--ease-standard),
+        background var(--motion-base) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard);
+    }
+
+    .map-action::before,
+    .map-link::before {
+      content: "↗";
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      color: oklch(18% 0.035 150);
+      background: oklch(78% 0.18 150);
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .map-action:hover,
+    .map-action:focus-visible,
+    .map-link:hover,
+    .map-link:focus-visible {
+      border-color: oklch(78% 0.18 150 / 0.58);
+      background:
+        linear-gradient(135deg, oklch(71% 0.18 150 / 0.34), oklch(100% 0 0 / 0.12));
+      transform: translateY(-1px);
+    }
+
+    .map-action {
+      width: 100%;
+      min-height: 42px;
+      margin-top: 14px;
+      border-radius: 14px;
+    }
+
     .ask-bar {
       position: relative;
       display: grid;
@@ -759,6 +809,11 @@
       gap: 10px;
     }
 
+    .choice-item {
+      display: grid;
+      gap: 7px;
+    }
+
     .choice-card {
       width: 100%;
       display: grid;
@@ -821,6 +876,22 @@
       font-size: 12px;
       font-weight: 800;
       white-space: nowrap;
+    }
+
+    .map-link {
+      min-height: 38px;
+      border-radius: 14px;
+      padding: 0 12px;
+    }
+
+    .map-link span {
+      color: var(--night-muted);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .map-link strong {
+      font-size: 13px;
     }
 
     .bottom-grid {
@@ -1175,6 +1246,7 @@
             <div class="mini-copy">
               <h2 id="spot-title">샤브온당</h2>
               <p id="spot-copy">영화 직후에도 부담 적은 따뜻한 점심. 대기 시 다른 후보로 빠르게 전환합니다.</p>
+              <a class="map-action" id="spot-map-link" href="https://map.naver.com/p/search/%EC%83%A4%EB%B8%8C%EC%98%A8%EB%8B%B9%20%EC%96%91%EC%A3%BC%EC%98%A5%EC%A0%95%EC%A0%90" target="_blank" rel="noopener noreferrer" aria-label="샤브온당 양주옥정점 네이버지도 열기">네이버지도에서 보기</a>
             </div>
           </aside>
         </div>
@@ -1225,38 +1297,56 @@
         </section>
 
         <section class="choice-panel" id="lunch" aria-label="점심 후보 선택">
-          <button class="choice-card is-selected" type="button" data-place="shabu">
-            <span class="choice-photo" aria-hidden="true">
-              <img src="assets/date-course/shabuondang-fixed.jpg" alt="" loading="lazy" />
-            </span>
-            <span class="choice-copy">
-              <h3>샤브온당 양주옥정점</h3>
-              <p>국물 식사라 덜 느끼하고 대화 흐름을 만들기 좋습니다.</p>
-            </span>
-            <span class="choice-badge">1순위</span>
-          </button>
+          <div class="choice-item">
+            <button class="choice-card is-selected" type="button" data-place="shabu">
+              <span class="choice-photo" aria-hidden="true">
+                <img src="assets/date-course/shabuondang-fixed.jpg" alt="" loading="lazy" />
+              </span>
+              <span class="choice-copy">
+                <h3>샤브온당 양주옥정점</h3>
+                <p>국물 식사라 덜 느끼하고 대화 흐름을 만들기 좋습니다.</p>
+              </span>
+              <span class="choice-badge">1순위</span>
+            </button>
+            <a class="map-link" href="https://map.naver.com/p/search/%EC%83%A4%EB%B8%8C%EC%98%A8%EB%8B%B9%20%EC%96%91%EC%A3%BC%EC%98%A5%EC%A0%95%EC%A0%90" target="_blank" rel="noopener noreferrer" aria-label="샤브온당 양주옥정점 네이버지도 열기">
+              <span>네이버지도</span>
+              <strong>샤브온당 보기</strong>
+            </a>
+          </div>
 
-          <button class="choice-card" type="button" data-place="choi">
-            <span class="choice-photo" aria-hidden="true">
-              <img src="assets/date-course/choidining.webp" alt="" loading="lazy" />
-            </span>
-            <span class="choice-copy">
-              <h3>초이다이닝 양주옥정점</h3>
-              <p>후토마끼, 마제소바처럼 메뉴 선택 폭이 있는 데이트감 식사입니다.</p>
-            </span>
-            <span class="choice-badge">분위기</span>
-          </button>
+          <div class="choice-item">
+            <button class="choice-card" type="button" data-place="choi">
+              <span class="choice-photo" aria-hidden="true">
+                <img src="assets/date-course/choidining.webp" alt="" loading="lazy" />
+              </span>
+              <span class="choice-copy">
+                <h3>초이다이닝 양주옥정점</h3>
+                <p>후토마끼, 마제소바처럼 메뉴 선택 폭이 있는 데이트감 식사입니다.</p>
+              </span>
+              <span class="choice-badge">분위기</span>
+            </button>
+            <a class="map-link" href="https://map.naver.com/p/search/%EC%B4%88%EC%9D%B4%EB%8B%A4%EC%9D%B4%EB%8B%9D%20%EC%96%91%EC%A3%BC%EC%98%A5%EC%A0%95%EC%A0%90" target="_blank" rel="noopener noreferrer" aria-label="초이다이닝 양주옥정점 네이버지도 열기">
+              <span>네이버지도</span>
+              <strong>초이다이닝 보기</strong>
+            </a>
+          </div>
 
-          <button class="choice-card" type="button" data-place="pho">
-            <span class="choice-photo" aria-hidden="true">
-              <img src="assets/date-course/phoaini.webp" alt="" loading="lazy" />
-            </span>
-            <span class="choice-copy">
-              <h3>포아이니 양주옥정점</h3>
-              <p>대기가 길 때 일정이 밀리지 않도록 빠르게 먹는 대안입니다.</p>
-            </span>
-            <span class="choice-badge">대안</span>
-          </button>
+          <div class="choice-item">
+            <button class="choice-card" type="button" data-place="pho">
+              <span class="choice-photo" aria-hidden="true">
+                <img src="assets/date-course/phoaini.webp" alt="" loading="lazy" />
+              </span>
+              <span class="choice-copy">
+                <h3>포아이니 양주옥정점</h3>
+                <p>대기가 길 때 일정이 밀리지 않도록 빠르게 먹는 대안입니다.</p>
+              </span>
+              <span class="choice-badge">대안</span>
+            </button>
+            <a class="map-link" href="https://map.naver.com/p/search/%ED%8F%AC%EC%95%84%EC%9D%B4%EB%8B%88%20%EC%96%91%EC%A3%BC%EC%98%A5%EC%A0%95%EC%A0%90" target="_blank" rel="noopener noreferrer" aria-label="포아이니 양주옥정점 네이버지도 열기">
+              <span>네이버지도</span>
+              <strong>포아이니 보기</strong>
+            </a>
+          </div>
         </section>
 
         <section class="info-card">
@@ -1339,6 +1429,7 @@
         title: "샤브온당",
         lunch: "샤브온당 양주옥정점 우선",
         image: "assets/date-course/shabuondang-fixed.jpg",
+        mapUrl: "https://map.naver.com/p/search/%EC%83%A4%EB%B8%8C%EC%98%A8%EB%8B%B9%20%EC%96%91%EC%A3%BC%EC%98%A5%EC%A0%95%EC%A0%90",
         copy: "따뜻한 국물 식사라 부담이 적고, 대화하면서 먹기 좋습니다.",
         spot: "영화 직후에도 부담 적은 따뜻한 점심. 대기 시 다른 후보로 빠르게 전환합니다.",
         address: "샤브온당 우선 확인",
@@ -1348,6 +1439,7 @@
         title: "초이다이닝",
         lunch: "초이다이닝 양주옥정점",
         image: "assets/date-course/choidining.webp",
+        mapUrl: "https://map.naver.com/p/search/%EC%B4%88%EC%9D%B4%EB%8B%A4%EC%9D%B4%EB%8B%9D%20%EC%96%91%EC%A3%BC%EC%98%A5%EC%A0%95%EC%A0%90",
         copy: "후토마끼, 마제소바처럼 메뉴 선택 폭이 있어 취향이 갈릴 때 맞추기 좋습니다.",
         spot: "조금 더 데이트 분위기를 내고 싶을 때 좋은 식사 선택입니다.",
         address: "초이다이닝으로 변경",
@@ -1357,6 +1449,7 @@
         title: "포아이니",
         lunch: "포아이니 양주옥정점",
         image: "assets/date-course/phoaini.webp",
+        mapUrl: "https://map.naver.com/p/search/%ED%8F%AC%EC%95%84%EC%9D%B4%EB%8B%88%20%EC%96%91%EC%A3%BC%EC%98%A5%EC%A0%95%EC%A0%90",
         copy: "국물 메뉴 중심이라 가볍고 빠릅니다. 대기가 길 때 일정이 밀리지 않는 선택지입니다.",
         spot: "일정이 밀릴 때 빠르게 먹고 카페 시간을 지키는 대안입니다.",
         address: "포아이니로 변경",
@@ -1381,6 +1474,7 @@
 
     const choiceCards = Array.from(document.querySelectorAll(".choice-card"));
     const spotPhoto = document.getElementById("spot-photo");
+    const spotMapLink = document.getElementById("spot-map-link");
     const spotTitle = document.getElementById("spot-title");
     const spotCopy = document.getElementById("spot-copy");
     const timelineLunch = document.getElementById("timeline-lunch");
@@ -1395,6 +1489,8 @@
         card.classList.toggle("is-selected", card.dataset.place === placeId);
       });
       spotPhoto.src = place.image;
+      spotMapLink.href = place.mapUrl;
+      spotMapLink.setAttribute("aria-label", `${place.lunch.replace(" 우선", "")} 네이버지도 열기`);
       spotTitle.textContent = place.title;
       spotCopy.textContent = place.spot;
       timelineLunch.textContent = place.lunch;
